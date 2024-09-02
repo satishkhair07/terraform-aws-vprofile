@@ -1,6 +1,6 @@
 resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   name                = "vprofile-bean-prod"
-  application         = aws_elastic_beanstalk_application.vprofile-prod
+  application         = aws_elastic_beanstalk_application.vprofile-prod.name
   solution_stack_name = "64bit Amazon Linux 2023 v5.3.1 running Tomcat 10 Corretto 21"
   cname_prefix        = "vprofile-bean-prod-domain"
   setting {
