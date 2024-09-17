@@ -51,7 +51,7 @@ resource "aws_security_group" "vprofile-prod-sg" {
 
   ingress {
     from_port       = 22
-    protocol        = "tpc"
+    protocol        = "tcp"
     to_port         = 22
     security_groups = [aws_security_group.vprofile-bastion-sg.id]
   }
@@ -87,7 +87,7 @@ resource "aws_security_group_rule" "sec_group_allow_itself" {
   type                     = "ingress"
   from_port                = 0
   to_port                  = 65535
-  protocol                 = "tpc"
+  protocol                 = "tcp"
   security_group_id        = aws_security_group.vprofile-backend-sg.id
   source_security_group_id = aws_security_group.vprofile-backend-sg.id
 }
