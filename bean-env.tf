@@ -33,20 +33,26 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
     name      = "InstanceType"
     value     = "t2.micro"
   }
+
+  setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "EC2KeyName"
+    value     = aws_key_pair.vprofilekey.key_name
+  }
   setting {
     namespace = "aws:autoscaling:asg"
     name      = "Availability Zones"
-    value     = "Any 2"
+    value     = "Any 3"
   }
   setting {
     namespace = "aws:autoscaling:asg"
     name      = "MinSize"
-    value     = 1
+    value     = "1"
   }
   setting {
     namespace = "aws:autoscaling:asg"
-    name      = "MinSize"
-    value     = 2
+    name      = "MaxSize"
+    value     = "2"
   }
   setting {
     namespace = "aws:elasticbeanstalk:application:envvironment"
