@@ -1,7 +1,7 @@
 resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   name                = "vprofile-bean-prod"
   application         = aws_elastic_beanstalk_application.vprofile-prod.name
-  solution_stack_name = "64bit Amazon Linux 2023 v5.3.1 running Tomcat 10 Corretto 21"
+  solution_stack_name = "64bit Amazon Linux 2023 v5.3.2 running Tomcat 9 Corretto 11"
   cname_prefix        = "vprofile-bean-prod-domain"
   setting {
     name      = "VPCId"
@@ -10,7 +10,7 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   }
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
-    name      = "IaamInstanceProfile"
+    name      = "IamInstanceProfile"
     value     = "aws-elasticbeanstalk-ec2-role"
   }
   setting {
@@ -31,7 +31,7 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "InstanceType"
-    value     = "t2.micro"
+    value     = "t3.micro"
   }
 
   setting {
@@ -42,7 +42,7 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   setting {
     namespace = "aws:autoscaling:asg"
     name      = "Availability Zones"
-    value     = "Any 3"
+    value     = "Any 2"
   }
   setting {
     namespace = "aws:autoscaling:asg"
@@ -55,7 +55,7 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
     value     = "2"
   }
   setting {
-    namespace = "aws:elasticbeanstalk:application:envvironment"
+    namespace = "aws:elasticbeanstalk:application:environment"
     name      = "environment"
     value     = "prod"
   }
